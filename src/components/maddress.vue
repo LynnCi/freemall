@@ -4,6 +4,7 @@
     <div class="maddress">
       <div class="address-lc">lc</div>
       <div class="address-step">stepcontent</div>
+      <div class="next-step">下一步</div>
     </div>
     <m-footer></m-footer>
   </div>

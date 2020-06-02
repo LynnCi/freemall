@@ -64,7 +64,7 @@
                   </div>
                   <div class="cart-tab-5">
                     <div class="cart-item-opration">
-                      <a href="javascript:;" class="item-edit-btn">
+                      <a href="javascript:;" class="item-edit-btn" @click="delCartConfirm(item)">
                         <svg class="icon icon-del">
                           <use xlink:href="#icon-del"></use>
                         </svg>
@@ -102,21 +102,32 @@
       </div>
     </div>
     <m-footer></m-footer>
+    <modal :mdShow="modalConfirm">
+      <p slot="message">你确定要删除此条数据吗？</p>
+      <div slot="btnGroup">
+        <a class="btn btn--m" href="javascript:;">确认</a>
+        <a class="btn btn--m btn--red" href="javascript:;">取消</a>
+      </div>
+    </modal>
   </div>
 </template>
 
 <script>
   import mHeader from '@/components/mheader'
   import mFooter from '@/components/mfooter'
+  import modal from '@/components/mmodal'
 
   export default {
     name: "mcart",
     components:{
       mHeader,
-      mFooter
+      mFooter,
+      modal
     },
     data(){
       return{
+        modalConfirm:false,//弹框显式属性
+        delItem:'',
         cartdata:[]
       }
     },
@@ -152,6 +163,11 @@
         }else{
           item.checked = !item.checked
         }
+      },
+      //删除数据确认弹框
+      delCartConfirm(item){
+        this.delItem = item;
+        this.modalConfirm = true;
       }
     }
   }

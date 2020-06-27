@@ -65,9 +65,10 @@
                   <div class="cart-tab-5">
                     <div class="cart-item-opration">
                       <a href="javascript:;" class="item-edit-btn" @click="delCartConfirm(item)">
-                        <svg class="icon icon-del">
-                          <use xlink:href="#icon-del"></use>
-                        </svg>
+                        删除
+<!--                        <svg class="icon icon-del">-->
+<!--                          <use xlink:href="#icon-del"></use>-->
+<!--                        </svg>-->
                       </a>
                     </div>
                   </div>
@@ -102,12 +103,14 @@
       </div>
     </div>
     <m-footer></m-footer>
-    <modal :mdShow="modalConfirm">
-      <p slot="message">你确定要删除此条数据吗？</p>
-      <div slot="btnGroup">
-        <a class="btn btn--m" href="javascript:;">确认</a>
-        <a class="btn btn--m btn--red" href="javascript:;">取消</a>
-      </div>
+    <modal :mdShow="modalConfirm" @closeModal="closeModal">
+      <template v-slot:message>
+        <p>你确定要删除此条数据吗？</p>
+      </template>
+      <template v-slot:btnGroup>
+        <a class="btn btn--m" href="javascript:;" @click="deldata">确认</a>
+        <a class="btn btn--m btn--red" href="javascript:;" @click="closeModal">关闭</a>
+      </template>
     </modal>
   </div>
 </template>
@@ -168,6 +171,17 @@
       delCartConfirm(item){
         this.delItem = item;
         this.modalConfirm = true;
+      },
+      closeModal(){
+        this.modalConfirm = false;
+      },
+      deldata(){
+        let delitem = this.delItem
+        this.cartList.forEach((item,index) => {
+          if(delitem.productId == item.productId){
+            this.cartList(index,1)
+          }
+        })
       }
     }
   }

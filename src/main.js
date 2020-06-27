@@ -8,6 +8,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 import axios from 'axios'
 import '@/assets/stylus/base.css'
 import '@/assets/stylus/index.css'
+// import i18n from './i18n/i18n'
 
 Vue.config.productionTip = false
 Vue.use(ElementUI)
@@ -18,6 +19,7 @@ Vue.prototype.$axios = axios;
 new Vue({
   el: '#app',
   router,
+  // i18n,
   components: { App },
   template: '<App/>'
 })

@@ -26,7 +26,7 @@
         props:["mdShow"],
         methods:{
             closeModal(){
-                this.$emit("close");
+                this.$emit('closeModal')
             }
         }
     }
